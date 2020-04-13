@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/4/12 22:50
 # @Author  : tanxw
-# @Desc    : 爬虫示例
+# @Desc    : 爬虫示例1 - 抓取豆瓣影视信息
 
 import requests
 import json

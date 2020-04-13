@@ -7,6 +7,7 @@
 import requests
 from fake_useragent import UserAgent
 from retrying import retry
+# pip install retrying
 
 def proxy_use(ua):
     url = "http://www.baidu.com"
