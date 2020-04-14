@@ -4,15 +4,17 @@ import requests
 import json
 import time
 
-# 云码解析工具
+# http://www.yundama.com/apidoc/ 帮助文档
+# http://www.yundama.com/price.html 云打码价格表
+# 云打码解析工具
 class YDMHttp:
     apiurl = 'http://api.yundama.com/api.php'
 
     def __init__(self):
-        self.username = ''
-        self.password = ''
-        self.appid = ''
-        self.appkey = ''
+        self.username = 'tanxw'
+        self.password = 'xxxxx'
+        self.appid = '10552'
+        self.appkey = '6ad073764da15cfa0ae6319134bce7d8'
 
     def request(self, fields, files=[]):
         response = self.post_url(self.apiurl, fields, files)
@@ -98,14 +100,14 @@ def indetify(response_content):
 
 def indetify_by_filepath(file_path):
     # 初始化
-    yundama = YDMHttp(username, password, appid, appkey)
+    yundama = YDMHttp()
     # 登陆云打码
-    uid = yundama.login();
+    uid = yundama.login()
     print('uid: %s' % uid)
     # 查询余额
-    balance = yundama.balance();
+    balance = yundama.balance()
     print('balance: %s' % balance)
     # 开始识别，图片路径，验证码类型ID，超时时间（秒），识别结果
-    cid, result = yundama.decode(file_path, codetype, timeout)
+    cid, result = yundama.decode(file_path, 6300, 60)
     print('cid: %s, result: %s' % (cid, result))
     return result

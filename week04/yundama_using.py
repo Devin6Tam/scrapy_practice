@@ -5,7 +5,7 @@
 
 
 import requests
-from week04.yundama import indetify
+from week04.yundama_profile import indetify
 from fake_useragent import UserAgent
 
 if __name__ == '__main__':
