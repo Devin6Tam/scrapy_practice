@@ -11,10 +11,10 @@ import json
 client = pymongo.MongoClient(host="127.0.0.1", port=27017)
 
 # 2. 建库
-db = client['scrapy']
+db = client['pystu']
 
 # 3. 建表
-collection = db['test']
+collection = db['python']
 
 # collection = client['pystu']['python']
 # collection = client.pystu.python
