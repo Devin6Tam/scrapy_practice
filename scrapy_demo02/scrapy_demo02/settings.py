@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from fake_useragent import UserAgent
-# Scrapy settings for scrapy_demo01 project
+# Scrapy settings for scrapy_demo02 project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,18 +9,18 @@ from fake_useragent import UserAgent
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'scrapy_demo01'
+BOT_NAME = 'scrapy_demo02'
 
-SPIDER_MODULES = ['scrapy_demo01.spiders']
-NEWSPIDER_MODULE = 'scrapy_demo01.spiders'
+SPIDER_MODULES = ['scrapy_demo02.spiders']
+NEWSPIDER_MODULE = 'scrapy_demo02.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 ua = UserAgent()
 USER_AGENT = ua.random
 
-# Obey robots.txt rules  是否遵守网站爬虫规则
-ROBOTSTXT_OBEY = True
+# Obey robots.txt rules
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -48,13 +48,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'scrapy_demo01.middlewares.ScrapyDemo01SpiderMiddleware': 543,
+#    'scrapy_demo02.middlewares.ScrapyDemo02SpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'scrapy_demo01.middlewares.ScrapyDemo01DownloaderMiddleware': 543,
+#    'scrapy_demo02.middlewares.ScrapyDemo02DownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -63,12 +63,10 @@ ROBOTSTXT_OBEY = True
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
-# Configure item pipelines 管道-数据清洗及保存
+# Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# 优先级别0~1000  0 是最高级  1000 是最低级
 ITEM_PIPELINES = {
-   'scrapy_demo01.pipelines.CourseListPipeline': 300,
-   'scrapy_demo01.pipelines.CourseDetailPipeline': 500,
+   'scrapy_demo02.pipelines.NewsDetailPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -91,11 +89,3 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-
-# 日志输出级别  INFO,DEBUG,ERROR,WARNING,CRITICAL
-# LOG_LEVEL = "INFO"
-# LOG_FILE = "./demo.log"
-# 深度限制，如果为零，不加限制
-DEPTH_LIMIT = 0
-# 根据深度调整请求优先级
-DEPTH_PRIORITY = 0

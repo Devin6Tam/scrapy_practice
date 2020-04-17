@@ -8,9 +8,14 @@
 import scrapy
 
 # 在这里为您爬取的项目定义字段，以便于保存到item对象
-class ScrapyDemo01Item(scrapy.Item):
+class CourseListItem(scrapy.Item):
     # define the fields for your item here like:
     name = scrapy.Field()
+    image = scrapy.Field()
     url = scrapy.Field()
-    print(name)
-    pass
+
+class CourseDetailItem(scrapy.Item):
+    # define the fields for your item here like:
+    corse_intro = scrapy.Field()
+    corse_target = scrapy.Field()
+    corse_suitable_crowds = scrapy.Field()
