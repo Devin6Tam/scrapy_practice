@@ -1,103 +1,37 @@
 # -*- coding: utf-8 -*-
-
-# Define here the models for your spider middleware
+# 中间件定义及使用
+from fake_useragent import UserAgent
+import random
+# USER_AGENT_LIST = []
+# ua = UserAgent()
+# for i in range(1, 21):
+#     USER_AGENT_LIST.append(ua.random)
 #
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+# print(USER_AGENT_LIST)
 
-from scrapy import signals
-
-
-class ScrapyDemo02SpiderMiddleware(object):
-    # Not all methods need to be defined. If a method is not defined,
-    # scrapy acts as if the spider middleware does not modify the
-    # passed objects.
-
-    @classmethod
-    def from_crawler(cls, crawler):
-        # This method is used by Scrapy to create your spiders.
-        s = cls()
-        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
-        return s
-
-    def process_spider_input(self, response, spider):
-        # Called for each response that goes through the spider
-        # middleware and into the spider.
-
-        # Should return None or raise an exception.
-        return None
-
-    def process_spider_output(self, response, result, spider):
-        # Called with the results returned from the Spider, after
-        # it has processed the response.
-
-        # Must return an iterable of Request, dict or Item objects.
-        for i in result:
-            yield i
-
-    def process_spider_exception(self, response, exception, spider):
-        # Called when a spider or process_spider_input() method
-        # (from other spider middleware) raises an exception.
-
-        # Should return either None or an iterable of Request, dict
-        # or Item objects.
-        pass
-
-    def process_start_requests(self, start_requests, spider):
-        # Called with the start requests of the spider, and works
-        # similarly to the process_spider_output() method, except
-        # that it doesn’t have a response associated.
-
-        # Must return only requests (not items).
-        for r in start_requests:
-            yield r
-
-    def spider_opened(self, spider):
-        spider.logger.info('Spider opened: %s' % spider.name)
-
-
-class ScrapyDemo02DownloaderMiddleware(object):
-    # Not all methods need to be defined. If a method is not defined,
-    # scrapy acts as if the downloader middleware does not modify the
-    # passed objects.
-
-    @classmethod
-    def from_crawler(cls, crawler):
-        # This method is used by Scrapy to create your spiders.
-        s = cls()
-        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
-        return s
-
+# 利用中间件反反爬
+class UserAgentMiddleware(object):
     def process_request(self, request, spider):
-        # Called for each request that goes through the downloader
-        # middleware.
+        # 1.随机的ua
+        # random_ua = random.choice(USER_AGENT_LIST)
+        ua = UserAgent()
+        random_ua = ua.random
+        # 2.request.headers['USER_AGNET']
+        request.headers['USER_AGENT'] = random_ua
 
-        # Must either:
-        # - return None: continue processing this request
-        # - or return a Response object
-        # - or return a Request object
-        # - or raise IgnoreRequest: process_exception() methods of
-        #   installed downloader middleware will be called
-        return None
+        # 演示测试一下 传递请求是否生效
 
     def process_response(self, request, response, spider):
-        # Called with the response returned from the downloader.
-
-        # Must either;
-        # - return a Response object
-        # - return a Request object
-        # - or raise IgnoreRequest
+        print("#" * 100)
+        print(request.headers['USER_AGENT'])
         return response
 
-    def process_exception(self, request, exception, spider):
-        # Called when a download handler or a process_request()
-        # (from other downloader middleware) raises an exception.
-
-        # Must either:
-        # - return None: continue processing this exception
-        # - return a Response object: stops process_exception() chain
-        # - return a Request object: stops process_exception() chain
-        pass
-
-    def spider_opened(self, spider):
-        spider.logger.info('Spider opened: %s' % spider.name)
+class ProxyMiddleware(object):
+    def process_request(self, request, spider):
+        # 拦截框架的请求request
+        # 以前的代理
+        # proxy = {"http":"IP:prot"}
+        #框架里
+        proxy = "http://192.168.0.6:8888"
+        #设置
+        request.meta['proxy'] = proxy

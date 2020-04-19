@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from fake_useragent import UserAgent
-# Scrapy settings for scrapy_demo02 project
+# Scrapy settings for scrapy_demo03 project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,10 +9,10 @@ from fake_useragent import UserAgent
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'scrapy_demo02'
+BOT_NAME = 'scrapy_demo03'
 
-SPIDER_MODULES = ['scrapy_demo02.spiders']
-NEWSPIDER_MODULE = 'scrapy_demo02.spiders'
+SPIDER_MODULES = ['scrapy_demo03.spiders']
+NEWSPIDER_MODULE = 'scrapy_demo03.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -48,15 +48,14 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'scrapy_demo02.middlewares.ScrapyDemo02SpiderMiddleware': 543,
+#    'scrapy_demo03.middlewares.ScrapyDemo03SpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
-   'scrapy_demo02.middlewares.UserAgentMiddleware': 543,
-   # 'scrapy_demo02.middlewares.ProxyMiddleware': 400,
-}
+#DOWNLOADER_MIDDLEWARES = {
+#    'scrapy_demo03.middlewares.ScrapyDemo03DownloaderMiddleware': 543,
+#}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -66,9 +65,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'scrapy_demo02.pipelines.NewsDetailPipeline': 300,
-}
+#ITEM_PIPELINES = {
+#    'scrapy_demo03.pipelines.ScrapyDemo03Pipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -90,3 +89,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+LOG_LEVEL = 'INFO'
+LOG_FILE = './info.log'

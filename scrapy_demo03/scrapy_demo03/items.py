@@ -8,9 +8,7 @@
 import scrapy
 
 
-class NewDetailItem(scrapy.Item):
+class ScrapyDemo03Item(scrapy.Item):
     # define the fields for your item here like:
-    title = scrapy.Field()
-    writer = scrapy.Field()
-    referer = scrapy.Field()
+    # name = scrapy.Field()
     pass

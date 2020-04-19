@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from scrapy.exporters import JsonItemExporter
-
+from .items import NewDetailItem
 # Define your item pipelines here
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
@@ -12,7 +12,7 @@ class NewsDetailPipeline(object):
         # w 写入字符创   wb 写入二进制
         self.file = open('detail_rednet.json', 'wb')
         # 写入器
-        self.writer = JsonItemExporter(self.file)
+        self.writer = JsonItemExporter(self.file, encoding='utf8')
         # 开启
         self.writer.start_exporting()
 
@@ -23,7 +23,7 @@ class NewsDetailPipeline(object):
         self.file.close()
 
     def process_item(self, item, spider):
-
         print("==============启动管道============")
-        self.writer.export_item(item)
+        if isinstance(item, NewDetailItem):
+            self.writer.export_item(item)
         return item
