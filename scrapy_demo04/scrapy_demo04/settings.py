@@ -40,10 +40,11 @@ ROBOTSTXT_OBEY = False
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Language': 'en',
+  'User-Agent': ua.random
+}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -65,9 +66,11 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'scrapy_demo04.pipelines.ScrapyDemo04Pipeline': 300,
-#}
+ITEM_PIPELINES = {
+   # 'scrapy_demo04.pipelines.CnbetaDetailPipeline': 300,
+   'scrapy_demo04.pipelines.RedisPipeline': 500,
+   'scrapy_redis.pipelines.RedisPipeline': 400,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -89,3 +92,29 @@ ROBOTSTXT_OBEY = False
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# 对应item设定的字段，取到图片的url，并下载保存
+IMAGES_URLS_FILED = "image_urls"
+IMAGES_STORE = "D:\\python\\py_workspace\\scrapy_practice\\scrapy_demo04\\images"
+
+
+# Enables scheduling storing requests queue in redis.
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# Ensure all spiders share same duplicates filter through redis.
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+# Don't cleanup redis queues, allows to pause/resume crawls.
+SCHEDULER_PERSIST = True
+
+# Specify the host and port to use when connecting to Redis (optional).
+REDIS_HOST = '192.168.42.18'
+REDIS_PORT = 6391
+# Custom redis client parameters (i.e.: socket timeout, etc.)
+REDIS_PARAMS = {'password': 'jyWHG8729', 'db': 10}
+
+# 是否在开始之前清空 调度器和去重记录，True=清空，False=不清空
+REDIS_START_URLS_AS_SET = False
+# Default start urls key for RedisSpider and RedisCrawlSpider.
+REDIS_START_URLS_KEY = '%(name)s:start_urls'
+
+# Use other encoding than utf-8 for redis.
+REDIS_ENCODING = 'utf-8'

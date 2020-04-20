@@ -2,6 +2,7 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
+from scrapy_redis.spiders import RedisSpider, RedisCrawlSpider
 # 用于处理原始内容信息
 from w3lib import html
 from lxml import etree
@@ -9,11 +10,12 @@ from lxml import etree
 from scrapy_demo04.items import CnbetaDetailItem
 
 
-class CnbetaSpider(CrawlSpider):
-    name = 'cnbeta'
+class CnbetaSpider(RedisCrawlSpider):
+    name = 'cnbeta_crawlredis'
     allowed_domains = ['cnbeta.com']
-    start_urls = ['http://www.cnbeta.com/']
-
+    # start_urls = ['http://www.cnbeta.com/']
+    # 指纹
+    redis_key = "cnbeta_crawlredis:start_urls"
     rules = (
         Rule(LinkExtractor(allow=r'articles/.*'), callback='parse_detail', follow=True),
     )

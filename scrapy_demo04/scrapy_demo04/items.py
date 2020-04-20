@@ -8,7 +8,10 @@
 import scrapy
 
 
-class ScrapyDemo04Item(scrapy.Item):
+class CnbetaDetailItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    title = scrapy.Field()
+    publish_time = scrapy.Field()
+    referer = scrapy.Field()
+    content = scrapy.Field()
+    image_urls = scrapy.Field()
