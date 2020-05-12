@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2020/5/9 22:08
+# @Author  : tanxw
+# @Desc    : help 使用
+
+import jsonpath
+
+help(jsonpath)
+dir(jsonpath)
