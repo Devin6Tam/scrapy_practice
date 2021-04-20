@@ -11,7 +11,7 @@ idna==2.9
 jsonpath==0.82
 mysqlclient==1.4.6
 Pillow==7.0.0
-py==1.8.1
+py==1.10.0
 PyMySQL==0.9.3
 pytz==2019.3
 requests==2.23.0
