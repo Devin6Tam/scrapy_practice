@@ -10,7 +10,7 @@ fake-useragent==0.1.11
 idna==2.9
 jsonpath==0.82
 mysqlclient==1.4.6
-Pillow==7.0.0
+Pillow==8.2.0
 py==1.8.1
 PyMySQL==0.9.3
 pytz==2019.3
